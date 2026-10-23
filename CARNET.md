@@ -145,15 +145,15 @@
 
 1. Quelle est la différence entre une erreur `4xx` et une erreur `5xx` ? Qui est « fautif » dans chaque cas ?
 
-   > _Ma réponse :_ 
+   > _Ma réponse :_ Les codes 4xx indiquent généralement un problème dans la requête du client, par exemple une page inexistante avec le code 404 ou un accès interdit avec le code 403. Les codes 5xx indiquent que le serveur n'a pas réussi à traiter une requête valide, par exemple à cause d'un bug avec le code 500.
 
 2. Comment fonctionne une redirection ? Qui fait la deuxième requête : le serveur ou le navigateur ?
 
-   > _Ma réponse :_ 
+   > _Ma réponse :_ Le serveur renvoie un code de redirection, comme 302, ainsi qu'un en-tête Location indiquant la nouvelle adresse. Le navigateur reçoit cette réponse puis effectue lui-même une deuxième requête vers cette adresse.
 
 3. Donnez un exemple de situation où un vrai site utilise une redirection.
 
-   > _Ma réponse :_ 
+   > _Ma réponse :_ Un site peut rediriger un visiteur vers une nouvelle adresse après le déplacement d'une page, ou rediriger un utilisateur non connecté vers la page de connexion.
 
 ---
 
