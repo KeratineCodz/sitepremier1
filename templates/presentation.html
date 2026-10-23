@@ -3,7 +3,7 @@
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <title>Accueil</title>
+    <title>Présentation</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
@@ -13,15 +13,23 @@
         <a href="/loisirs">Loisirs</a>
     </nav>
 
-    <h1>Bienvenue sur mon site !</h1>
+    <h1>{{ prenom }} {{ nom }}</h1>
 
-    <p>Je m'appelle Rayan Moghrabi et je découvre le fonctionnement du Web.</p>
+    <p>Je suis étudiant en <strong>première année d'informatique</strong>.</p>
 
-    <p>
-        Un lien vers un autre site :
-        <a href="https://fr.wikipedia.org/wiki/World_Wide_Web">
-            l'histoire du Web
-        </a>.
-    </p>
+    <h2>Mes loisirs</h2>
+    <ul>
+        {% for loisir in loisirs %}
+            <li>{{ loisir }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Un langage que j'apprends</h2>
+    <p>Je découvre actuellement Python et HTML.</p>
+
+    <img
+        src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg"
+        width="100"
+        alt="Logo Python">
 </body>
 </html>
