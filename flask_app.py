@@ -2,46 +2,46 @@
 # ---------------------------------------------------------------
 # Mon premier site Web avec Flask
 # ---------------------------------------------------------------
+# Ce fichier reçoit les demandes des navigateurs et fabrique
+# les réponses en utilisant des templates HTML.
+# ---------------------------------------------------------------
 
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 
+# Page d'accueil
 @app.get("/")
 def accueil():
     return "Bienvenue sur mon site !"
 
 
+# Page de présentation utilisant un template HTML
 @app.get("/presentation")
 def presentation():
-    return """
-    <h1>Rayan Moghrabi</h1>
-
-    <p>Je suis étudiant en <strong>informatique</strong>.</p>
-
-    <h2>Mes loisirs</h2>
-    <ul>
-        <li>La musique et le rap</li>
-        <li>Les jeux vidéo</li>
-        <li>Le sport</li>
-    </ul>
-
-    <h2>Un langage que j'apprends</h2>
-    <p>Je découvre actuellement Python et HTML.</p>
-
-    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="100">
-    """
+    return render_template(
+        "presentation.html",
+        prenom="Rayan",
+        nom="Moghrabi",
+        loisirs=["Musique et rap", "Jeux vidéo", "Sport"]
+    )
 
 
+# Page des loisirs
 @app.get("/loisirs")
 def loisirs():
-    return """
-    <h1>Mes loisirs</h1>
-    <p>J'aime la musique, le rap, les jeux vidéo et le sport.</p>
-    """
+    return render_template(
+        "presentation.html",
+        prenom="Rayan",
+        nom="Moghrabi",
+        loisirs=["Musique et rap", "Jeux vidéo", "Sport"]
+    )
 
 
-# Ne pas modifier cette partie
+# ---------------------------------------------------------------
+# Ne pas modifier : utile seulement pour lancer le site
+# sur votre propre ordinateur
+# ---------------------------------------------------------------
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
