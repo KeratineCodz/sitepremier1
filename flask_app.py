@@ -1,5 +1,6 @@
 
 from flask import Flask, render_template, request
+from markupsafe import escape
 
 app = Flask(__name__)
 
@@ -32,13 +33,13 @@ def loisirs():
     )
 
 
-# Partie A : prénom dans le chemin de l'URL
+# Exercice 7 : prénom dans l'URL, avec template sécurisé
 @app.get("/bonjour/<prenom>")
 def bonjour(prenom):
     return render_template("bonjour.html", prenom=prenom)
 
 
-# Partie B + défi : calcul avec des paramètres dans l'URL
+# Exercice 7 : calcul avec paramètres d'URL
 @app.get("/calcul")
 def calcul():
     try:
@@ -64,9 +65,41 @@ def calcul():
         resultat = a / b
         symbole = "÷"
     else:
-        return "Opération inconnue. Utilisez plus, moins, fois ou divise.", 400
+        return "Opération inconnue.", 400
 
     return f"{a} {symbole} {b} = {resultat}"
+
+
+# Exercice 8 : afficher le formulaire
+@app.get("/formulaire")
+def formulaire():
+    return render_template("formulaire.html")
+
+
+# Exercice 8 : recevoir les données en GET ou POST
+@app.route("/salut", methods=["GET", "POST"])
+def salut():
+    if request.method == "POST":
+        prenom = request.form.get("prenom", "inconnu")
+        ville = request.form.get("ville", "nulle part")
+        couleur = request.form.get("couleur", "royalblue")
+    else:
+        prenom = request.args.get("prenom", "inconnu")
+        ville = request.args.get("ville", "nulle part")
+        couleur = request.args.get("couleur", "royalblue")
+
+    # Autoriser uniquement les couleurs prévues dans le formulaire
+    couleurs_autorisees = ["tomato", "teal", "royalblue"]
+    if couleur not in couleurs_autorisees:
+        couleur = "royalblue"
+
+    return render_template(
+        "salut.html",
+        prenom=prenom,
+        ville=ville,
+        couleur=couleur,
+        methode=request.method
+    )
 
 
 if __name__ == "__main__":
