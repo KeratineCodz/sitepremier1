@@ -93,19 +93,19 @@
 
 1. Que signifie HTTP ? Qui envoie la **requête** et qui envoie la **réponse** ?
 
-   > _Ma réponse :_ 
+   > _Ma réponse :_ HTTP signifie HyperText Transfer Protocol. Le navigateur envoie une requête au serveur et le serveur renvoie une réponse.
 
 2. Combien de requêtes votre page `/presentation` a-t-elle déclenchées ? Lesquelles ?
 
-   > _Ma réponse :_ 
+   > _Ma réponse :_ La page déclenche au minimum une requête pour le document HTML /presentation et une autre pour le fichier CSS /static/style.css. Le navigateur peut également demander la favicon et le logo Python hébergé sur un serveur externe. Le nombre exact dépend des requêtes observées dans l'onglet Réseau.
 
 3. Que signifie le code `200` ? Et le code `404` de la favicon ?
 
-   > _Ma réponse :_ 
+   > _Ma réponse :_ Le code HTTP 200 signifie que la requête a réussi. Le code 404 signifie que la ressource demandée n'a pas été trouvée, par exemple si le site ne possède pas de favicon.
 
 4. Pourquoi les modifications faites dans l'onglet Éléments ne sont-elles pas visibles par les autres visiteurs ?
 
-   > _Ma réponse :_ 
+   > _Ma réponse :_ Parce que ces modifications sont locales à mon navigateur. Elles ne modifient pas les fichiers enregistrés sur le serveur et disparaissent généralement lorsque je recharge la page.
 
 ---
 
@@ -113,15 +113,15 @@
 
 1. Dans l'URL `https://www.youtube.com/results?search_query=chat`, quel est le nom du paramètre ? Quelle est sa valeur ?
 
-   > _Ma réponse :_ 
+   > _Ma réponse :_ Le nom du paramètre est search_query et sa valeur est chat.
 
 2. Pourquoi le serveur plante-t-il avec `a=bonjour` ? Que faudrait-il faire pour l'éviter ?
 
-   > _Ma réponse :_ 
+   > _Ma réponse :_ Le serveur plante parce que la fonction int() ne peut pas convertir le texte bonjour en nombre entier. Pour éviter cette erreur, il faut vérifier les données reçues et utiliser try/except pour gérer les valeurs incorrectes.
 
 3. Pourquoi est-il dangereux d'afficher **tel quel** ce que l'utilisateur envoie ?
 
-   > _Ma réponse :_ 
+   > _Ma réponse :_ Parce qu'un utilisateur peut envoyer du code HTML ou JavaScript malveillant. Si le serveur l'affiche directement dans la page, le navigateur peut interpréter ce code. Cela peut provoquer une faille appelée XSS (Cross-Site Scripting).
 
 ---
 
