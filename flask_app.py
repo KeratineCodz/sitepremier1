@@ -1,11 +1,6 @@
+
 # ---------------------------------------------------------------
-#  Mon premier site Web avec Flask
-# ---------------------------------------------------------------
-#  Ce fichier est le "cerveau" de votre site : c'est lui qui
-#  reçoit les demandes des navigateurs et qui fabrique les réponses.
-#
-#  Vous allez le compléter petit à petit, exercice après exercice.
-#  Les consignes sont dans le dossier "exercices/".
+# Mon premier site Web avec Flask
 # ---------------------------------------------------------------
 
 from flask import Flask
@@ -13,35 +8,40 @@ from flask import Flask
 app = Flask(__name__)
 
 
-# Une "route" associe une adresse (URL) à une fonction Python.
-# Ici : quand quelqu'un visite la page d'accueil "/",
-# Flask exécute la fonction accueil() et renvoie son résultat au navigateur.
+@app.get("/")
+def accueil():
+    return "Bienvenue sur mon site !"
+
+
 @app.get("/presentation")
 def presentation():
     return """
-    <h1>Léa Martin</h1>
-    <p>Je suis étudiante en <strong>première année d'informatique</strong>.</p>
+    <h1>Rayan Moghrabi</h1>
 
-    <h2>Ce que j'aime</h2>
+    <p>Je suis étudiant en <strong>informatique</strong>.</p>
+
+    <h2>Mes loisirs</h2>
     <ul>
+        <li>La musique et le rap</li>
         <li>Les jeux vidéo</li>
-        <li>La musique</li>
-        <li>Le code (bientôt !)</li>
+        <li>Le sport</li>
     </ul>
+
+    <h2>Un langage que j'apprends</h2>
+    <p>Je découvre actuellement Python et HTML.</p>
 
     <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="100">
     """
 
 
-# ---------------------------------------------------------------
-#  Ajoutez vos nouvelles routes ci-dessous 👇
-# ---------------------------------------------------------------
+@app.get("/loisirs")
+def loisirs():
+    return """
+    <h1>Mes loisirs</h1>
+    <p>J'aime la musique, le rap, les jeux vidéo et le sport.</p>
+    """
 
 
-
-# ---------------------------------------------------------------
-#  Ne pas modifier : utile seulement pour lancer le site
-#  sur votre propre ordinateur (python flask_app.py)
-# ---------------------------------------------------------------
+# Ne pas modifier cette partie
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
