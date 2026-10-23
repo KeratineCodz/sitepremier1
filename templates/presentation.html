@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Présentation</title>
+</head>
+<body>
+    <h1>{{ prenom }} {{ nom }}</h1>
+
+    <p>Je suis étudiant en <strong>première année d'informatique</strong>.</p>
+
+    <h2>Mes loisirs</h2>
+    <ul>
+        {% for loisir in loisirs %}
+            <li>{{ loisir }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Un langage que j'apprends</h2>
+    <p>Je découvre actuellement Python et HTML.</p>
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="100">
+</body>
+</html>
