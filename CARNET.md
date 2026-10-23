@@ -161,19 +161,25 @@
 
 1. Citez trois informations que le serveur connaît sur vous, sans que vous ayez rien rempli.
 
-   > _Ma réponse :_ 
+   > _Ma réponse :_ Le serveur peut connaître :
+
+Mon adresse IP apparente.
+
+Le navigateur et parfois le système d'exploitation utilisés, grâce à l'en-tête User-Agent.
+
+Les langues préférées du navigateur, grâce à l'en-tête Accept-Language.
 
 2. À quoi peut servir l'en-tête `Accept-Language` pour un site comme Wikipédia ?
 
-   > _Ma réponse :_ 
+   > _Ma réponse :_ Il permet au site de connaître les langues préférées du navigateur et de proposer une version du site dans une langue adaptée, par exemple le français ou l'anglais.
 
 3. Dans l'Access log, retrouvez une requête qui a reçu un code `404`. Quelle page était demandée ?
 
-   > _Ma réponse :_ 
+   > _Ma réponse :_ La page demandée est celle indiquée dans la ligne du journal contenant le code 404. Il faut consulter l'Access log de son propre site pour donner le chemin exact.
 
 4. Après cet exercice, que pensez-vous de la notion de « navigation anonyme » ?
 
-   > _Ma réponse :_ 
+   > _Ma réponse :_ La navigation n'est pas totalement anonyme. Un serveur peut enregistrer l'adresse IP apparente, l'heure de la visite, la page demandée et certaines informations sur le navigateur. La navigation privée empêche surtout de conserver certaines données localement ; elle ne rend pas invisible auprès des sites visités ou du réseau.
 
 ---
 
