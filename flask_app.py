@@ -1,17 +1,15 @@
 
-from flask import Flask, render_template, request
-from markupsafe import escape
+from flask import Flask, render_template, request, redirect, abort
 
 app = Flask(__name__)
 
 
-# Page d'accueil
+# Exercice 1 à 5 : pages principales
 @app.get("/")
 def accueil():
     return render_template("accueil.html")
 
 
-# Page de présentation
 @app.get("/presentation")
 def presentation():
     return render_template(
@@ -22,7 +20,6 @@ def presentation():
     )
 
 
-# Page des loisirs
 @app.get("/loisirs")
 def loisirs():
     return render_template(
@@ -33,13 +30,13 @@ def loisirs():
     )
 
 
-# Exercice 7 : prénom dans l'URL, avec template sécurisé
+# Exercice 7 : prénom dans l'URL
 @app.get("/bonjour/<prenom>")
 def bonjour(prenom):
     return render_template("bonjour.html", prenom=prenom)
 
 
-# Exercice 7 : calcul avec paramètres d'URL
+# Exercice 7 : calcul
 @app.get("/calcul")
 def calcul():
     try:
@@ -70,13 +67,12 @@ def calcul():
     return f"{a} {symbole} {b} = {resultat}"
 
 
-# Exercice 8 : afficher le formulaire
+# Exercice 8 : formulaire
 @app.get("/formulaire")
 def formulaire():
     return render_template("formulaire.html")
 
 
-# Exercice 8 : recevoir les données en GET ou POST
 @app.route("/salut", methods=["GET", "POST"])
 def salut():
     if request.method == "POST":
@@ -88,7 +84,6 @@ def salut():
         ville = request.args.get("ville", "nulle part")
         couleur = request.args.get("couleur", "royalblue")
 
-    # Autoriser uniquement les couleurs prévues dans le formulaire
     couleurs_autorisees = ["tomato", "teal", "royalblue"]
     if couleur not in couleurs_autorisees:
         couleur = "royalblue"
@@ -100,6 +95,30 @@ def salut():
         couleur=couleur,
         methode=request.method
     )
+
+
+# Exercice 9 : redirection vers l'accueil
+@app.get("/home")
+def home():
+    return redirect("/")
+
+
+# Exercice 9 : accès interdit
+@app.get("/secret")
+def secret():
+    abort(403)
+
+
+# Page d'erreur 403 personnalisée
+@app.errorhandler(403)
+def acces_interdit(erreur):
+    return render_template("403.html"), 403
+
+
+# Page d'erreur 404 personnalisée
+@app.errorhandler(404)
+def page_introuvable(erreur):
+    return render_template("404.html"), 404
 
 
 if __name__ == "__main__":
