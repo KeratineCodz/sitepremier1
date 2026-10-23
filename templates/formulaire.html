@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Formulaire</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        <a href="/">Accueil</a>
+        <a href="/presentation">Présentation</a>
+        <a href="/loisirs">Loisirs</a>
+        <a href="/formulaire">Formulaire</a>
+    </nav>
+
+    <h1>Faisons connaissance</h1>
+
+    <form action="/salut" method="get">
+        <label>
+            Votre prénom :
+            <input type="text" name="prenom" required>
+        </label>
+
+        <br><br>
+
+        <label>
+            Votre ville :
+            <input type="text" name="ville" required>
+        </label>
+
+        <br><br>
+
+        <label>
+            Votre couleur préférée :
+            <select name="couleur">
+                <option value="tomato">Rouge</option>
+                <option value="teal">Vert</option>
+                <option value="royalblue">Bleu</option>
+            </select>
+        </label>
+
+        <br><br>
+
+        <button type="submit">Envoyer</button>
+    </form>
+</body>
+</html>
