@@ -1,10 +1,11 @@
 
 from flask import Flask, render_template, request, redirect, abort
+from markupsafe import escape
 
 app = Flask(__name__)
 
 
-# Exercice 1 à 5 : pages principales
+# Pages principales
 @app.get("/")
 def accueil():
     return render_template("accueil.html")
@@ -97,28 +98,38 @@ def salut():
     )
 
 
-# Exercice 9 : redirection vers l'accueil
+# Exercice 9 : redirection
 @app.get("/home")
 def home():
     return redirect("/")
 
 
-# Exercice 9 : accès interdit
+# Exercice 9 : erreurs personnalisées
 @app.get("/secret")
 def secret():
     abort(403)
 
 
-# Page d'erreur 403 personnalisée
 @app.errorhandler(403)
 def acces_interdit(erreur):
     return render_template("403.html"), 403
 
 
-# Page d'erreur 404 personnalisée
 @app.errorhandler(404)
 def page_introuvable(erreur):
     return render_template("404.html"), 404
+
+
+# Exercice 10 : informations reçues par le serveur
+@app.get("/moi")
+def moi():
+    return render_template(
+        "moi.html",
+        ip=request.headers.get("X-Real-IP", request.remote_addr),
+        navigateur=request.headers.get("User-Agent", "Non renseigné"),
+        langues=request.headers.get("Accept-Language", "Non renseigné"),
+        entetes=request.headers
+    )
 
 
 if __name__ == "__main__":
