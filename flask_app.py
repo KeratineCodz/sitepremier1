@@ -1,11 +1,12 @@
 
-from flask import Flask, render_template, request, redirect, abort
-from markupsafe import escape
+from flask import Flask, render_template, request, redirect, abort, jsonify
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 app = Flask(__name__)
 
 
-# Pages principales
+# Exercices 1 à 5 : pages principales
 @app.get("/")
 def accueil():
     return render_template("accueil.html")
@@ -37,7 +38,7 @@ def bonjour(prenom):
     return render_template("bonjour.html", prenom=prenom)
 
 
-# Exercice 7 : calcul
+# Exercice 7 : calcul avec paramètres URL
 @app.get("/calcul")
 def calcul():
     try:
@@ -68,7 +69,7 @@ def calcul():
     return f"{a} {symbole} {b} = {resultat}"
 
 
-# Exercice 8 : formulaire
+# Exercice 8 : formulaire GET / POST
 @app.get("/formulaire")
 def formulaire():
     return render_template("formulaire.html")
@@ -120,7 +121,7 @@ def page_introuvable(erreur):
     return render_template("404.html"), 404
 
 
-# Exercice 10 : informations reçues par le serveur
+# Exercice 10 : informations sur la requête
 @app.get("/moi")
 def moi():
     return render_template(
@@ -130,6 +131,24 @@ def moi():
         langues=request.headers.get("Accept-Language", "Non renseigné"),
         entetes=request.headers
     )
+
+
+# Exercice 11, partie B : API qui renvoie du JSON
+@app.get("/api/heure")
+def api_heure():
+    maintenant = datetime.now(ZoneInfo("Europe/Paris"))
+
+    return jsonify({
+        "heure": maintenant.strftime("%H:%M:%S"),
+        "date": maintenant.strftime("%d/%m/%Y"),
+        "message": "Bonjour depuis mon API !"
+    })
+
+
+# Exercice 11, partie C : page horloge
+@app.get("/horloge")
+def horloge():
+    return render_template("horloge.html")
 
 
 if __name__ == "__main__":
